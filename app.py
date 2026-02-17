@@ -3,7 +3,7 @@ import plotly.express as px
 import streamlit as st
 
 # Leer los datos
-car_data = pd.read_csv('vehicles_us.csv')
+car_data = pd.read_csv('datos/vehicles_us.csv')
 
 # Encabezado
 st.header('Cuadro de Mandos: Análisis de Vehículos')
