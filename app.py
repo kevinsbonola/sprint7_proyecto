@@ -1,12 +1,25 @@
 import pandas as pd
-import streamlit as st
 import plotly.express as px
+import streamlit as st
 
-datos = pd.read_csv("datos/vehicles_us.csv")
+# Leer los datos
+car_data = pd.read_csv('vehicles_us.csv')
 
-st.title("Análisis de Vehículos en Estados Unidos")
+# Encabezado
+st.header('Cuadro de Mandos: Análisis de Vehículos')
 
-# Gráfico de distribución de tipos de vehículos
-fig_tipo = px.histogram(
-    datos, x="type", title="Distribución de Tipos de Vehículos")
-st.plotly_chart(fig_tipo)
+# Casilla de verificación para el histograma
+build_histogram = st.checkbox('Construir un histograma')
+
+if build_histogram:
+    st.write('Creando un histograma para la columna odómetro')
+    fig = px.histogram(car_data, x="odometer")
+    st.plotly_chart(fig, use_container_width=True)
+
+# Botón para el gráfico de dispersión
+build_scatter = st.button('Construir gráfico de dispersión')
+
+if build_scatter:
+    st.write('Creando un gráfico de dispersión: Odómetro vs Precio')
+    fig = px.scatter(car_data, x="odometer", y="price")
+    st.plotly_chart(fig, use_container_width=True)
